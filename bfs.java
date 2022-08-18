@@ -1,16 +1,27 @@
-public class T_BFS {
+void BFS(int s)
+    {
+       
+        boolean visited[] = new boolean[V];
 
-	public void levelOrderQueue(Node root) {
-		Queue<Node> q = new LinkedList<Node>();
-		if (root == null)
-			return;
-		q.add(root);
-		while (!q.isEmpty()) {
-			Node n = (Node) q.remove();
-			System.out.print(" " + n.data);
-			if (n.left != null)
-				q.add(n.left);
-			if (n.right != null)
-				q.add(n.right);
-		}
-	}
+        LinkedList<Integer> queue = new LinkedList<Integer>();
+
+        visited[s]=true;
+        queue.add(s);
+ 
+        while (queue.size() != 0)
+        {
+            s = queue.poll();
+            System.out.print(s+" ");
+ 
+            Iterator<Integer> i = adj[s].listIterator();
+            while (i.hasNext())
+            {
+                int n = i.next();
+                if (!visited[n])
+                {
+                    visited[n] = true;
+                    queue.add(n);
+                }
+            }
+        }
+    }
